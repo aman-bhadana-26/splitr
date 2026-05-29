@@ -13,7 +13,7 @@ export default function LandingPage() {
       {/* ───── Hero ───── */}
       <section className="mt-20 pb-12 space-y-10 md:space-y-15 px-5">
         <div className="container mx-auto px-4 md:px-6 text-center space-y-6">
-          <Badge variant="outline" className="bg-green-100 text-green-700">
+          <Badge variant="outline" className="bg-green-100 text-green-700 dark:bg-green-950/30 dark:text-green-400">
             Split expenses. Simplify life.
           </Badge>
 
@@ -21,7 +21,7 @@ export default function LandingPage() {
             The smartest way to split expenses with friends
           </h1>
 
-          <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed">
+          <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed">
             Track shared expenses, split bills effortlessly, and settle up
             quickly. Never worry about who owes who again.
           </p>
@@ -30,7 +30,7 @@ export default function LandingPage() {
             <Button
               asChild
               size="lg"
-              className="bg-green-600 hover:bg-green-700"
+              className="bg-green-600 hover:bg-green-700 text-white"
             >
               <Link href="/dashboard">
                 Get Started
@@ -41,7 +41,7 @@ export default function LandingPage() {
               asChild
               variant="outline"
               size="lg"
-              className="border-green-600 text-green-600 hover:bg-green-50"
+              className="border-green-600 text-green-600 hover:bg-green-50 dark:hover:bg-green-950/10 dark:text-green-400 dark:border-green-500"
             >
               <Link href="#how-it-works">See How It Works</Link>
             </Button>
@@ -63,33 +63,37 @@ export default function LandingPage() {
       </section>
 
       {/* ───── Features ───── */}
-      <section id="features" className="bg-gray-50 py-20">
+      <section id="features" className="bg-zinc-50/50 dark:bg-zinc-900/30 border-y py-20">
         <div className="container mx-auto px-4 md:px-6 text-center">
-          <Badge variant="outline" className="bg-green-100 text-green-700">
+          <Badge variant="outline" className="bg-green-100 text-green-700 dark:bg-green-950/30 dark:text-green-400">
             Features
           </Badge>
           <h2 className="gradient-title mt-2 text-3xl md:text-4xl">
             Everything you need to split expenses
           </h2>
-          <p className="mx-auto mt-3 max-w-[700px] text-gray-500 md:text-xl/relaxed">
+          <p className="mx-auto mt-3 max-w-[700px] text-muted-foreground md:text-xl/relaxed">
             Our platform provides all the tools you need to handle shared
             expenses with ease.
           </p>
 
           <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {FEATURES.map(({ title, Icon, bg, color, description }) => (
-              <Card
-                key={title}
-                className="flex flex-col items-center space-y-4 p-6 text-center"
-              >
-                <div className={`rounded-full p-3 ${bg}`}>
-                  <Icon className={`h-6 w-6 ${color}`} />
-                </div>
+            {FEATURES.map(({ title, Icon, bg, color, description }) => {
+              const darkBg = bg.replace("100", "950/30");
+              const darkColor = color.replace("600", "400");
+              return (
+                <Card
+                  key={title}
+                  className="flex flex-col items-center space-y-4 p-6 text-center hover:shadow-md transition-shadow"
+                >
+                  <div className={`rounded-full p-3 ${bg} dark:${darkBg}`}>
+                    <Icon className={`h-6 w-6 ${color} dark:${darkColor}`} />
+                  </div>
 
-                <h3 className="text-xl font-bold">{title}</h3>
-                <p className="text-gray-500">{description}</p>
-              </Card>
-            ))}
+                  <h3 className="text-xl font-bold">{title}</h3>
+                  <p className="text-muted-foreground">{description}</p>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -97,13 +101,13 @@ export default function LandingPage() {
       {/* ───── How it works ───── */}
       <section id="how-it-works" className="py-20">
         <div className="container mx-auto px-4 md:px-6 text-center">
-          <Badge variant="outline" className="bg-green-100 text-green-700">
+          <Badge variant="outline" className="bg-green-100 text-green-700 dark:bg-green-950/30 dark:text-green-400">
             How It Works
           </Badge>
           <h2 className="gradient-title mt-2 text-3xl md:text-4xl">
             Splitting expenses has never been easier
           </h2>
-          <p className="mx-auto mt-3 max-w-[700px] text-gray-500 md:text-xl/relaxed">
+          <p className="mx-auto mt-3 max-w-[700px] text-muted-foreground md:text-xl/relaxed">
             Follow these simple steps to start tracking and splitting expenses
             with friends.
           </p>
@@ -111,11 +115,11 @@ export default function LandingPage() {
           <div className="mx-auto mt-12 grid max-w-5xl gap-8 md:grid-cols-3">
             {STEPS.map(({ label, title, description }) => (
               <div key={label} className="flex flex-col items-center space-y-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-xl font-bold text-green-600">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-xl font-bold text-green-600 dark:bg-green-950/30 dark:text-green-400">
                   {label}
                 </div>
                 <h3 className="text-xl font-bold">{title}</h3>
-                <p className="text-gray-500 text-center">{description}</p>
+                <p className="text-muted-foreground text-center">{description}</p>
               </div>
             ))}
           </div>
@@ -145,7 +149,7 @@ export default function LandingPage() {
       </section>
 
       {/* ───── Footer ───── */}
-      <footer className="border-t bg-gray-50 py-12 text-center text-sm text-muted-foreground">
+      <footer className="border-t bg-zinc-50/50 dark:bg-zinc-900/30 py-12 text-center text-sm text-muted-foreground">
        Made with Love!
       </footer>
     </div>

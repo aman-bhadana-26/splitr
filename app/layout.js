@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ConvexClientProvider } from "@/components/convex-client-provider";
+import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/header";
 import { Toaster } from "sonner";
 
@@ -14,7 +15,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/logos/logo-s.png" sizes="any" />
       </head>
@@ -23,12 +24,19 @@ export default function RootLayout({ children }) {
           publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
         >
           <ConvexClientProvider>
-            <Header />
-            <main className="min-h-screen">
-              <Toaster richColors />
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Header />
+              <main className="min-h-screen">
+                <Toaster richColors />
 
-              {children}
-            </main>
+                {children}
+              </main>
+            </ThemeProvider>
           </ConvexClientProvider>
         </ClerkProvider>
       </body>
