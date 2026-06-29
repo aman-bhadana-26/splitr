@@ -42,17 +42,21 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 w-full border-b bg-background/95 backdrop-blur z-50 supports-[backdrop-filter]:bg-background/60">
+    <header className="fixed top-0 w-full border-b border-zinc-200/80 dark:border-zinc-800/80 bg-background/95 backdrop-blur z-50 supports-[backdrop-filter]:bg-background/60 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_25px_rgba(0,0,0,0.25)]">
+      <div className="h-[3px] w-full bg-gradient-to-r from-green-600 via-emerald-500 to-teal-500" />
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2.5 hover:opacity-90 transition-opacity">
           <Image
-            src={"/logos/logo.png"}
+            src="/logos/logo-s.png"
             alt="Splitr Logo"
-            width={200}
-            height={60}
-            className="h-11 w-auto object-contain"
+            width={36}
+            height={36}
+            className="h-9 w-auto object-contain"
           />
+          <span className="text-xl md:text-2xl font-black tracking-wider bg-gradient-to-r from-green-600 via-emerald-500 to-teal-500 bg-clip-text text-transparent">
+            SPLITR
+          </span>
         </Link>
 
         {/* Desktop Navigation Links */}
